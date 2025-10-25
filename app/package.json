@@ -1,0 +1,29 @@
+{
+  "name": "hello-world-app",
+  "version": "1.0.0",
+  "description": "Simple Hello World Node.js application for Azure App Service",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "azure",
+    "app-service",
+    "hello-world"
+  ],
+  "author": "Azure Developer",
+  "license": "MIT"
+}
