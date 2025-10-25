@@ -5,7 +5,7 @@
 *.tfvars.backup
 .terraform/
 .terraform.lock.hcl
-terraform.tfvars
+/terraform.tfvars
 
 # Crash logs
 crash.log
