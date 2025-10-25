@@ -41,6 +41,35 @@ AppServiceTerraform/
 
 ## Getting Started
 
+### Option 1: Automated Deployment (Recommended)
+
+Use the PowerShell deployment script for complete infrastructure and application deployment:
+
+```powershell
+# 1. Login to Azure
+az login
+
+# 2. Deploy everything to staging (infrastructure + application)
+.\scripts\deploy.ps1 -Environment staging -AutoApprove
+
+# 3. Deploy everything to production (infrastructure + application)  
+.\scripts\deploy.ps1 -Environment production
+```
+
+### Option 2: Infrastructure Only
+
+Deploy only the infrastructure without the application:
+
+```powershell
+# Deploy only infrastructure to staging
+.\scripts\deploy.ps1 -Environment staging -SkipAppDeployment -AutoApprove
+
+# Later, deploy just the application
+.\scripts\deploy-app-only.ps1
+```
+
+### Option 3: Manual Terraform Commands
+
 1. **Login to Azure**
 
    ```bash
