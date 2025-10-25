@@ -42,3 +42,7 @@ yarn-error.log*
 # Temporary files
 *.tmp
 *.temp
+
+# Deployment artifacts
+*.zip
+app-deploy.zip

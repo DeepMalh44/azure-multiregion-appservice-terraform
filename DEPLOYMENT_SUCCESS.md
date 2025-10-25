@@ -1,66 +1,82 @@
 # Azure Multi-Region App Service Deployment - SUCCESS! 🎉
 
+**Last Updated**: October 25, 2025  
+**Status**: ✅ FULLY OPERATIONAL with Beautiful Wishes Page
+
 ## Overview
 
-Successfully deployed a multi-region Hello World application on Azure using Terraform with the following architecture:
+Successfully deployed a multi-region Hello World application with beautiful wishes page on Azure using Terraform with the following architecture:
 
 - **Multi-region deployment**: East US (primary) and West US 2 (secondary)
 - **Application Gateway**: Load balancer with public endpoint
-- **Private Access**: Apps only accessible through Application Gateway
+- **Beautiful Wishes Page**: "Good Day Today! All Your Wishes Come True" with animations
 - **Resource Organization**: One resource group per region as requested
 - **High Availability**: Multi-zone deployment with health monitoring
+- **Node.js Application**: Deployed with Node.js 20-lts runtime
 
 ## Deployed Resources
 
 ### Primary Region (East US)
-- Resource Group: `rg-hello-world-app-eastus-42dfea51`
-- App Service: `app-hello-world-app-eastus-42dfea51`
-- Service Plan: `asp-hello-world-app-eastus-42dfea51` (Standard S1)
-- Virtual Network: `vnet-hello-world-app-eastus-42dfea51` (10.10.0.0/16)
-- Application Insights: `appi-app-hello-world-app-eastus-42dfea51`
-- Log Analytics: `log-app-hello-world-app-eastus-42dfea51`
+
+- Resource Group: `rg-hello-world-app-eastus-6e716b99`
+- App Service: `app-hello-world-app-eastus-6e716b99`
+- Service Plan: `asp-hello-world-app-eastus-6e716b99` (Standard S1)
+- Virtual Network: `vnet-hello-world-app-eastus-6e716b99` (10.10.0.0/16)
 
 ### Secondary Region (West US 2)
-- Resource Group: `rg-hello-world-app-westus2-42dfea51`
-- App Service: `app-hello-world-app-westus2-42dfea51`
-- Service Plan: `asp-hello-world-app-westus2-42dfea51` (Standard S1)
-- Virtual Network: `vnet-hello-world-app-westus2-42dfea51` (10.11.0.0/16)
-- Application Insights: `appi-app-hello-world-app-westus2-42dfea51`
-- Log Analytics: `log-app-hello-world-app-westus2-42dfea51`
+
+- Resource Group: `rg-hello-world-app-westus2-6e716b99`
+- App Service: `app-hello-world-app-westus2-6e716b99`
+- Service Plan: `asp-hello-world-app-westus2-6e716b99` (Standard S1)
+- Virtual Network: `vnet-hello-world-app-westus2-6e716b99` (10.11.0.0/16)
 
 ### Application Gateway (Primary Region)
-- Name: `agw-hello-world-app-42dfea51`
-- Public IP: `40.88.11.160`
-- FQDN: `agw-hello-world-app-42dfea51-6f98b548.eastus.cloudapp.azure.com`
-- Configuration: HTTP frontend with HTTPS backends
+
+- Name: `agw-hello-world-app-6e716b99`
+- Public IP: `172.173.227.224`
+- FQDN: `agw-hello-world-app-6e716b99-e556fbad.eastus.cloudapp.azure.com`
+- Configuration: HTTP frontend with load balancing
 - Health Probes: `/health` endpoint monitoring
 
 ## Access URLs
 
 ### Public Endpoint (Recommended)
-- **Application Gateway**: http://agw-hello-world-app-42dfea51-6f98b548.eastus.cloudapp.azure.com
-- **Health Check**: http://agw-hello-world-app-42dfea51-6f98b548.eastus.cloudapp.azure.com/health
+
+- **Application Gateway**: <http://agw-hello-world-app-6e716b99-e556fbad.eastus.cloudapp.azure.com>
+- **Beautiful Wishes Page**: <http://agw-hello-world-app-6e716b99-e556fbad.eastus.cloudapp.azure.com/wishes>
+- **Health Check**: <http://agw-hello-world-app-6e716b99-e556fbad.eastus.cloudapp.azure.com/health>
+- **API Info**: <http://agw-hello-world-app-6e716b99-e556fbad.eastus.cloudapp.azure.com/api/info>
 
 ### Direct Access (For Testing)
-- **Primary App**: https://app-hello-world-app-eastus-42dfea51.azurewebsites.net
-- **Secondary App**: https://app-hello-world-app-westus2-42dfea51.azurewebsites.net
+
+- **Primary App**: <https://app-hello-world-app-eastus-6e716b99.azurewebsites.net>
+- **Secondary App**: <https://app-hello-world-app-westus2-6e716b99.azurewebsites.net>
 
 ## Application Features
 
-The deployed Hello World application includes:
+The deployed application includes a beautiful wishes page and comprehensive API endpoints:
 
 ### Endpoints
-- `/` - Main endpoint with application info
-- `/health` - Health check endpoint for monitoring
-- `/api/info` - Detailed system information
 
-### Response Data
-Each response includes:
-- Message and timestamp
-- Environment and region information
-- Instance ID for tracking
-- Request headers for debugging
-- System uptime and memory usage
+- `/` - Beautiful wishes page (same as /wishes)
+- `/wishes` - **Main Feature**: "Good Day Today! All Your Wishes Come True" 
+  - Animated gradient background with dynamic colors
+  - Twinkling star effects and particles
+  - Glassmorphism design elements
+  - Azure branding and responsive layout
+  - Dynamic region information display
+- `/health` - Health check endpoint for monitoring
+- `/api/info` - Detailed system information with region details
+
+### Beautiful Wishes Page Features
+
+- **Animated Backgrounds**: Dynamic gradient transitions
+- **Star Effects**: Twinkling star animations across the page
+- **Glassmorphism**: Modern glass-like design elements
+- **Typography**: Beautiful animated text effects
+- **Responsive Design**: Works on all device sizes
+- **Azure Branding**: Consistent with Azure design language
+- **Region Awareness**: Displays current Azure region information
 
 ### Example Response
 ```json
