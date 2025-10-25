@@ -1,9 +1,13 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware to parse JSON
 app.use(express.json());
+
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Environment variables
 const appEnv = process.env.APP_ENV || 'development';
@@ -19,6 +23,11 @@ app.get('/health', (req, res) => {
     region: appRegion,
     instanceId: instanceId
   });
+});
+
+// Beautiful HTML page route
+app.get('/wishes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Root endpoint

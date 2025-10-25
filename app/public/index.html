@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Day Wishes - Azure App Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .main-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .azure-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #0078d4, #106ebe);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 120, 212, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .azure-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 120, 212, 0.4);
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            color: #ffd700;
+            font-size: 1.5rem;
+            animation: twinkle 3s infinite;
+        }
+
+        .star:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .star:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .star:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 2s; }
+        .star:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 0.5s; }
+        .star:nth-child(5) { top: 50%; left: 5%; animation-delay: 1.5s; }
+        .star:nth-child(6) { top: 60%; right: 8%; animation-delay: 2.5s; }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .region-info {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8rem;
+            color: #888;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(118, 75, 162, 0.8);
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-text {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 40px 20px;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="stars">
+            <div class="star">✨</div>
+            <div class="star">⭐</div>
+            <div class="star">🌟</div>
+            <div class="star">✨</div>
+            <div class="star">⭐</div>
+            <div class="star">🌟</div>
+        </div>
+        
+        <h1 class="main-text">Hey, Good Day Today!</h1>
+        <h2 class="main-text">All Your Wishes Come True</h2>
+        
+        <p class="subtitle">Powered by Azure App Service across multiple regions</p>
+        
+        <div class="azure-badge">
+            🌐 Multi-Region Deployment
+        </div>
+        
+        <div class="footer">
+            May this beautiful day bring you joy, success, and all the happiness you deserve! ✨
+        </div>
+        
+        <div class="region-info" id="regionInfo">
+            Loading region info...
+        </div>
+    </div>
+
+    <script>
+        // Fetch and display region information
+        fetch('/api/info')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('regionInfo').textContent = 
+                    `Region: ${data.region || 'Unknown'} | Instance: ${data.instanceId ? data.instanceId.substring(0, 8) + '...' : 'Local'}`;
+            })
+            .catch(error => {
+                document.getElementById('regionInfo').textContent = 'Azure App Service';
+            });
+    </script>
+</body>
+</html>
